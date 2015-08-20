@@ -6,14 +6,25 @@ using System.Web.Http;
 
 namespace ComboSurf.Services.Controllers
 {
-        [RoutePrefix("home")]
+        [Route("")]
         public class HomeController : ApiController
         {
-            [Route("waves")]
             [HttpGet]
-            public IHttpActionResult Waves()
+            public IHttpActionResult Index()
             {
                 return Ok("Hello World");
             }
         }
+     
+    
+        //[RoutePrefix("home")]
+        //public class HomeController : ApiController
+        //{
+        //    [Route("waves")]
+        //    [HttpGet]
+        //    public IHttpActionResult Waves()
+        //    {
+        //        return Ok("Wave info");
+        //    }
+        //}
 }
