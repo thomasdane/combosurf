@@ -12,19 +12,7 @@ namespace ComboSurf.Services.Controllers
             [HttpGet]
             public IHttpActionResult Index()
             {
-                return Ok("<h1>Hello World</h1>");
+                return Ok("Hello World");
             }
         }
-     
-    
-        //[RoutePrefix("home")]
-        //public class HomeController : ApiController
-        //{
-        //    [Route("waves")]
-        //    [HttpGet]
-        //    public IHttpActionResult Waves()
-        //    {
-        //        return Ok("Wave info");
-        //    }
-        //}
 }
