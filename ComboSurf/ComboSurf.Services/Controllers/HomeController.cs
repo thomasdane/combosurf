@@ -12,7 +12,7 @@ namespace ComboSurf.Services.Controllers
             [HttpGet]
             public IHttpActionResult Index()
             {
-                return Ok("Hello World");
+                return Ok("<h1>Hello World</h1>");
             }
         }
      
