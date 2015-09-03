@@ -12,22 +12,32 @@ namespace ComboSurf.Services.Controllers
     [RoutePrefix("spot")]
     public class SpotController : ApiController
     {
-        [Route("")]
-        [HttpGet]
-        public Spot Get()
+        private IList<Spot> _spots;
+
+        public SpotController()
         {
-            return new Spot
-            {
-                Id = 1,
-                Name = "Fairy Bower",
-                WaveType = "Point Break"
-            };
+            _spots = new List<Spot>();
         }
+        
+        [Route("{id}")]
+        [HttpGet]
+        public Spot Get(int id)
+        {
+            var spot = AllSpots.Spots.FirstOrDefault(s => s.Id == id);
+            return spot;
+        }
+        
         [Route("")]
         [HttpPost]
         public IHttpActionResult Add([FromBody]Spot spot)
         {
-            return Created("test", "test");
+            AllSpots.Spots.Add(spot);
+            return Created("spot", spot);
         }
+    }
+
+    public static class AllSpots
+    {
+        public static IList<Spot> Spots = new List<Spot>();
     }
 }
