@@ -34,6 +34,14 @@ namespace ComboSurf.Services.Controllers
             AllSpots.Spots.Add(spot);
             return Created("spot", spot);
         }
+
+        [Route("{id}")]
+        [HttpDelete]
+        public IHttpActionResult Delete([FromBody]Spot spot)
+        {
+            AllSpots.Spots.RemoveAt(spot.Id - 1);
+            return Ok("spot deleted");
+        }
     }
 
     public static class AllSpots
