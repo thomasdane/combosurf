@@ -42,6 +42,21 @@ namespace ComboSurf.Services.Controllers
             AllSpots.Spots.RemoveAt(spot.Id - 1);
             return Ok("spot deleted");
         }
+
+        [Route("{id}")]
+        [HttpPut]
+        public IHttpActionResult Update([FromBody]Spot spot)
+        {
+            foreach (Spot s in AllSpots.Spots)
+            {
+                if (s.Id == spot.Id)
+                {
+                    s.Name = spot.Name;
+                    s.WaveType = spot.WaveType;
+                }
+            }
+            return Ok("Updated the " + spot.WaveType + spot.WaveType);
+        }
     }
 
     public static class AllSpots
