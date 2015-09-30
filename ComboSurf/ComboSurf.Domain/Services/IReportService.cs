@@ -10,7 +10,6 @@ namespace ComboSurf.Domain.Services
 {
 	public interface IReportService
 	{
-		Task<BeachReport> GetBeachReport(SwellnetReport swellnetReport, CwReport coastalwatchReport);
 	}
 }
 

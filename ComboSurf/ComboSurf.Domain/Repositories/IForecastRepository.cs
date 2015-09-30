@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ComboSurf.Domain.Models
+namespace ComboSurf.Domain.Repositories
 {
-	class Surfer
+	class IForecastRepository
 	{
 	}
 }

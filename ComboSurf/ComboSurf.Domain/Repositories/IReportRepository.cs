@@ -8,6 +8,5 @@ namespace ComboSurf.Domain.Repositories
 {
 	class IReportRepository
 	{
-		private Task<BeachReport> GetAllReportsForBeach(int beachId);
 	}
 }
