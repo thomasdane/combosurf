@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ComboSurf.Domain.Models
+namespace ComboSurf.Domain.Repositories
 {
-	class Report
+	class IReportRepository
 	{
+		private Task<BeachReport> GetAllReportsForBeach(int beachId);
 	}
 }
