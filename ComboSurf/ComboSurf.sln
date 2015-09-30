@@ -3,43 +3,20 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComboSurf.API", "ComboSurf.Services\ComboSurf.API.csproj", "{35473D5C-7EBF-458D-AE01-7A524872182F}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComboSurf.Domain", "ComboSurf.Domain\ComboSurf.Domain.csproj", "{BA9C838A-D680-4D7E-8C5F-2A28FE0BEF6F}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComboSurf.ApplicationServices", "ComboSurf.AppServices\ComboSurf.ApplicationServices.csproj", "{EF589899-42B1-4DCE-BEF2-3BC6DACB5CB4}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{D289241A-E7B9-460D-9DD3-32EBFC0B2F31}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Website", "Website", "{F1FB610F-E838-41FD-9193-B585845C1C6E}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{D7CE3648-C9CC-4F40-8BD1-A03ACD0FD202}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{49EE970C-0D3F-4F81-AE83-35606A9EEB6D}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "combosurf", "combosurf.vcxproj", "{F0935F36-4C7F-46E8-BF38-686263700CEE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|Any CPU = Debug|Any CPU
-		Release|Any CPU = Release|Any CPU
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{35473D5C-7EBF-458D-AE01-7A524872182F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{35473D5C-7EBF-458D-AE01-7A524872182F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{35473D5C-7EBF-458D-AE01-7A524872182F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{35473D5C-7EBF-458D-AE01-7A524872182F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BA9C838A-D680-4D7E-8C5F-2A28FE0BEF6F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BA9C838A-D680-4D7E-8C5F-2A28FE0BEF6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BA9C838A-D680-4D7E-8C5F-2A28FE0BEF6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BA9C838A-D680-4D7E-8C5F-2A28FE0BEF6F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{EF589899-42B1-4DCE-BEF2-3BC6DACB5CB4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EF589899-42B1-4DCE-BEF2-3BC6DACB5CB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EF589899-42B1-4DCE-BEF2-3BC6DACB5CB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EF589899-42B1-4DCE-BEF2-3BC6DACB5CB4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F0935F36-4C7F-46E8-BF38-686263700CEE}.Debug|Win32.ActiveCfg = Debug|Win32
+		{F0935F36-4C7F-46E8-BF38-686263700CEE}.Debug|Win32.Build.0 = Debug|Win32
+		{F0935F36-4C7F-46E8-BF38-686263700CEE}.Release|Win32.ActiveCfg = Release|Win32
+		{F0935F36-4C7F-46E8-BF38-686263700CEE}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{F1FB610F-E838-41FD-9193-B585845C1C6E} = {D289241A-E7B9-460D-9DD3-32EBFC0B2F31}
 	EndGlobalSection
 EndGlobal
