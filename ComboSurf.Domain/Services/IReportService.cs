@@ -10,6 +10,7 @@ namespace ComboSurf.Domain.Services
 {
 	public interface IReportService
 	{
+		Report Create(int beachId, int dataProviderId);
 	}
 }
 

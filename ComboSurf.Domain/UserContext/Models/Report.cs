@@ -6,16 +6,14 @@ using System.Threading.Tasks;
 
 namespace ComboSurf.Domain.Models
 {
-
 	public class Report
-	
 	{
-		public Guid BeachId { get; private set; }
-		public Guid DataProviderId { get; private set; }
+		public int BeachId { get; private set; }
+		public int DataProviderId { get; private set; }
 		public int ReportTime { get; private set; }
 		public Array ReportData { get; set; }
 
-		private Report(Guid beachId, Guid dataProviderId, int reportTime, Array reportData)
+		private Report(int beachId, int dataProviderId, int reportTime, Array reportData)
 		{
 			BeachId = beachId;
 			DataProviderId = dataProviderId;
@@ -24,10 +22,9 @@ namespace ComboSurf.Domain.Models
 		}
 
 		//factory method
-		public static Report Create(Guid beachId, Guid dataProviderId, int reportTime, Array reportData)
+		public static Report Create(int beachId, int dataProviderId, int reportTime, Array reportData)
 		{
-			return new Report(beachId, dataProviderId, reportTime, reportData)
-			;
+			return new Report(beachId, dataProviderId, reportTime, reportData);
 		}
 	}
 }
