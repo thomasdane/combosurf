@@ -94,7 +94,6 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers.Tests\SpotControllerTests.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SpotController.cs" />
     <Compile Include="Models\Spot.cs" />
