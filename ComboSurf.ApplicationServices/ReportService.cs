@@ -15,10 +15,8 @@ namespace ComboSurf.ApplicationServices
 
 		public Report Create(int beachId, int dataProviderId)
 		{
-			var blah = _reportRepository.GetByBeachProvider(4, 5);
-			Console.Write(blah);
-			Console.ReadKey();
-			return blah;
+			var report = _reportRepository.GetByBeachProvider(4, 5);
+			return report;
 		}
 	}
 }
