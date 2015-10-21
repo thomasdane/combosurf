@@ -15,12 +15,11 @@ namespace ComboSurf.Api.Controllers
         //fake the repository/proxy
         
 
-        [Route("{id}")]
+        [Route("")]
         [HttpGet]
-        public Spot Get(int id)
+        public IHttpActionResult Get()
         {
-            Spot spot = new Spot();
-            return spot;
+	        return Ok();
         }
     }
 }

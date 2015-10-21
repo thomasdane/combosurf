@@ -14,12 +14,17 @@ namespace ComboSurf.Api
     {	
         public void Configuration(IAppBuilder app)
         {
-            var configuration = new HttpConfiguration();
-            configuration.MapHttpAttributeRoutes();
-            var JsonFormatter = configuration.Formatters.OfType<JsonMediaTypeFormatter>().First();
-            JsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
-            configuration.Formatters.Remove(configuration.Formatters.OfType<XmlMediaTypeFormatter>().First());
-            app.UseWebApi(configuration);
+           Config.Invoke(app);
         }
+
+	    public static Action<IAppBuilder> Config = app =>
+	    {
+		    var configuration = new HttpConfiguration();
+		    configuration.MapHttpAttributeRoutes();
+		    var JsonFormatter = configuration.Formatters.OfType<JsonMediaTypeFormatter>().First();
+		    JsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+		    configuration.Formatters.Remove(configuration.Formatters.OfType<XmlMediaTypeFormatter>().First());
+		    app.UseWebApi(configuration);
+	    };
     }
 }
