@@ -15,24 +15,21 @@ namespace ComboSurf.Api.Tests.Integration.Controllers
 	{
 
 		[Fact]
-		public async Task Xxx()
+		public async Task EndpointReturnsOk()
 		{
 			var server = TestServer.Create<TestStartup>();
 			var response = await server.HttpClient.GetAsync("spot");
 			Assert.Equal(HttpStatusCode.OK, response.StatusCode);
 		}
-		
-		//[Fact]
-		//public void GetSpots()
-		//{
-		//	//Arrange
-		//	var spot = new Spot { Id = 1, Name = "Manly", WaveType = "Beach Break"};
-		//	var controller = new SpotController;
 
-		//	//Act 
-		//	var result = controller.Get(1);
-
-		//	Assert.Same(product, result);
-		//}
+		[Fact]
+		public async Task CheckEndpointReturnsCorrectJson()
+		{
+			var server = TestServer.Create<TestStartup>();
+			var response = await server.HttpClient.GetAsync("spot/1");
+			var expectedJson = @"{""id"":0,""name"":""Fairy Bower"",""waveType"":""Beach""}";
+			Assert.Equal(expectedJson, response.Content.ReadAsStringAsync().Result);
+    
+		}
 	}
 }

@@ -11,9 +11,7 @@ namespace ComboSurf.Api.Controllers
 {
     [RoutePrefix("spot")]
     public class SpotController : ApiController
-    {
-        //fake the repository/proxy
-        
+    {  
 
         [Route("")]
         [HttpGet]
@@ -21,5 +19,13 @@ namespace ComboSurf.Api.Controllers
         {
 	        return Ok();
         }
+
+		[Route("{id}")]
+		[HttpGet]
+		public IHttpActionResult GetById()
+		{
+			var spot = Spot.Create("Fairy Bower", "Beach");
+			return Ok(spot);
+		}
     }
 }
