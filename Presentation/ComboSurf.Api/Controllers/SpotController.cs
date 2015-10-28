@@ -22,9 +22,11 @@ namespace ComboSurf.Api.Controllers
 
 		[Route("{id}")]
 		[HttpGet]
-		public IHttpActionResult GetById()
+		public IHttpActionResult GetById(int id)
 		{
-			var spot = Spot.Create("Fairy Bower", "Beach");
+			if (id <= 0) return NotFound();
+
+			var spot = new SpotDto {Id = id, Name = "Fairy Bower", WaveType = "Beach"};
 			return Ok(spot);
 		}
     }
