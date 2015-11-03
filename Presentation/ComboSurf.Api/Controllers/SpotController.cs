@@ -6,6 +6,7 @@ using System.Web.Http;
 using System.Web.Http.Results;
 using Newtonsoft.Json;
 using ComboSurf.Api.Models;
+using ComboSurf.ApplicationServices;
 
 namespace ComboSurf.Api.Controllers
 {
@@ -26,7 +27,8 @@ namespace ComboSurf.Api.Controllers
 		{
 			if (id <= 0) return NotFound();
 
-			var spot = new SpotDto {Id = id, Name = "Fairy Bower", WaveType = "Beach"};
+			var spotService = new SpotService();
+			var spot = spotService.GetById(id);
 			return Ok(spot);
 		}
     }

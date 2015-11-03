@@ -43,11 +43,18 @@
     <Compile Include="Repositories\IReportRepository.cs" />
     <Compile Include="Services\IForecastService.cs" />
     <Compile Include="Services\IReportService.cs" />
+    <Compile Include="Services\ISpotService.cs" />
     <Compile Include="UserContext\Models\Beach.cs" />
     <Compile Include="UserContext\Models\DataProvider.cs" />
     <Compile Include="UserContext\Models\Forecast.cs" />
     <Compile Include="UserContext\Models\IEntity.cs" />
     <Compile Include="UserContext\Models\Report.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DataTransferObjects\DataTransferObjects.csproj">
+      <Project>{FD517765-E8E8-4256-9250-548672E96DA0}</Project>
+      <Name>DataTransferObjects</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

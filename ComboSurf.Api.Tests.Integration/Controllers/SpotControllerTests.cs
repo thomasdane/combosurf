@@ -55,6 +55,5 @@ namespace ComboSurf.Api.Tests.Integration.Controllers
 			Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
 		}
 	}
-	//task like a container or envelope for object. object wrapped by task. we unwrap with await. 
-	// data driven testing - autofixture
+
 }
