@@ -11,12 +11,11 @@ namespace ComboSurf.ApplicationServices
 	public class SpotService : ISpotService
 	{
 		public SpotDto GetById(int id)
-		{		
+		{
+			if (id < 0) return null;
+
 			var spotDto = new SpotDto {Id = id, Name = "Fairy Bower", WaveType = "Beach"};
 			return spotDto;
 		}
 	}
 }
-
-//questions:
-//I put the DTO in a Common folder - good idea? 
