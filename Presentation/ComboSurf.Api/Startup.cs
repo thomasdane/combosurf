@@ -14,7 +14,7 @@ using Owin;
 
 namespace ComboSurf.Api
 {
-	//[assembly: OwinStartup(typeof(ComboSurf.Api.Startup))]
+	[assembly: OwinStartup(typeof(ComboSurf.Api.Startup))]
     public class Startup
     {	
         public void Configuration(IAppBuilder app)
