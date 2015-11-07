@@ -38,10 +38,14 @@ namespace ComboSurf.Api.Controllers
 				: Ok(spot);
 		}
     }
-	//write unit tests controller and service
-	//mock service
-	//fakes vs mocks
-	//two ways to di - constructor and methods. methods not great for controller. 
+	//to do:
+	//write unit tests for controller
 	//try to unit test the service
-	//
+	
+	
+	//to learn : fakes vs mocks
+	//i have mocked service, it is better than fake.
+	//two ways to di - constructor and methods. methods not great for controller. 
+
+	//Questions: how do i create this object inside another object
 }
