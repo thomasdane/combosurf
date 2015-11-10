@@ -20,7 +20,7 @@ namespace ComboSurf.Api.Tests.Integration.Controllers
 		public async Task EndpointReturnsOk()
 		{
 			var server = TestServer.Create<TestStartup>();
-			var response = await server.HttpClient.GetAsync("spot");
+			var response = await server.HttpClient.GetAsync("spot/1");
 			Assert.Equal(HttpStatusCode.OK, response.StatusCode);
 		}
 
@@ -29,18 +29,14 @@ namespace ComboSurf.Api.Tests.Integration.Controllers
 		{
 			var server = TestServer.Create<TestStartup>();
 			const int expectedId = 10000;
-			var expectedSpot = new SpotDto { Id = expectedId, Name = "Fairy Bower", WaveType = "Beach" };
+			var expectedSpot = new SpotDto { Id = expectedId, Name = "Manly"};
 
-			//get http response
 			var response = await server.HttpClient.GetAsync("spot/" + expectedId);
-			//extract json from http response
 			var spot = await response.Content.ReadAsAsync<SpotDto>();
 
 			Assert.Equal(HttpStatusCode.OK, response.StatusCode);
 			Assert.Equal(expectedSpot.Id, spot.Id);
 			Assert.Equal(expectedSpot.Name, spot.Name);
-			Assert.Equal(expectedSpot.WaveType, spot.WaveType);
-
 		}
 
 		[Fact]
