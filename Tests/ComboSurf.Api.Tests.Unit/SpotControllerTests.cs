@@ -35,6 +35,15 @@ namespace ComboSurf.Api.Tests.Unit
 			var result = controller.GetById(5);
 			Assert.IsType<OkNegotiatedContentResult<SpotDto>>(result);
 		}
+
+		[Fact]
+		public void ShouldReturnNotFoundWhenPassedInvalidId()
+		{
+			_mockedSpotService.GetById(Arg.Any<int>()).Returns(x => null);
+			var controller = new SpotController(_mockedSpotService);
+			var result = controller.GetById(50000);
+			Assert.IsType<NotFoundResult>(result);
+		}
 	}
 
 
