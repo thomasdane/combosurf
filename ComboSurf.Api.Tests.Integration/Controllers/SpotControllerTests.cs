@@ -20,18 +20,49 @@ namespace ComboSurf.Api.Tests.Integration.Controllers
 		public async Task EndpointReturnsOk()
 		{
 			var server = TestServer.Create<TestStartup>();
-			var response = await server.HttpClient.GetAsync("spot/1");
+			var response = await server.HttpClient.GetAsync("spots/1");
 			Assert.Equal(HttpStatusCode.OK, response.StatusCode);
 		}
 
-		[Fact]
+        //StateUnderTest_ExpectedBehavior
+        [Fact]
+        public async Task GetMainRoute_ReturnsAllBreaks()
+        {
+            //Arrange
+            var server = TestServer.Create<TestStartup>(); // reason to have testServer in every test? 
+            string breaks = "Manly, Maroubra, Durras";
+
+            //Act
+            var response = await server.HttpClient.GetAsync("spots");
+            var result = await response.Content.ReadAsAsync<string>();
+            
+            //Assert
+            Assert.Equal(breaks, result);
+        }
+
+        [Fact]
+        public async Task GetByName_ReturnsCorrectBreak()
+        {
+            //Arrange
+            var server = TestServer.Create<TestStartup>();
+            const string expectedBreak = "Manly";
+
+            //Act
+            var response = await server.HttpClient.GetAsync("spots/" + expectedBreak);
+            var result = await response.Content.ReadAsAsync<string>();
+
+            //Assert
+            Assert.Equal(expectedBreak, result);
+        }
+        
+        [Fact]
 		public async Task CheckEndpointReturnsCorrectJson()
 		{
 			var server = TestServer.Create<TestStartup>();
 			const int expectedId = 10000;
 			var expectedSpot = new SpotDto { Id = expectedId, Name = "Manly"};
 
-			var response = await server.HttpClient.GetAsync("spot/" + expectedId);
+			var response = await server.HttpClient.GetAsync("spots/" + expectedId);
 			var spot = await response.Content.ReadAsAsync<SpotDto>();
 
 			Assert.Equal(HttpStatusCode.OK, response.StatusCode);
@@ -46,7 +77,7 @@ namespace ComboSurf.Api.Tests.Integration.Controllers
 			const int expectedId = -10;
 
 			//get http response
-			var response = await server.HttpClient.GetAsync("spot/" + expectedId);
+			var response = await server.HttpClient.GetAsync("spots/" + expectedId);
 
 			Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
 		}

@@ -10,7 +10,19 @@ namespace ComboSurf.ApplicationServices
 {
 	public class SpotService : ISpotService
 	{
-		public SpotDto GetById(int id)
+		public string GetAll()
+        {
+            string breaks = "Manly, Maroubra, Durras";
+            return breaks;
+        }
+
+        public string GetByName(string name)
+        {
+            string names = "Manly";
+            return names;
+        }
+        
+        public SpotDto GetById(int id)
 		{
 			if (id < 0) return null;
 

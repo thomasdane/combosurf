@@ -11,15 +11,9 @@ using ComboSurf.Domain.Services;
 
 namespace ComboSurf.Api.Controllers
 {
-    [RoutePrefix("spot")]
+    [RoutePrefix("spots")]
     public class SpotController : ApiController
     {  
-		//[Route("")]
-		//[HttpGet]
-		//public IHttpActionResult Get()
-		//{
-		//	return Ok();
-		//}
 	    private readonly ISpotService _spotService;
 
 	    public SpotController(ISpotService spotService)
@@ -27,7 +21,29 @@ namespace ComboSurf.Api.Controllers
 		    _spotService = spotService;
 	    }
 
-		[Route("{id}")]
+        [Route("")]
+        [HttpGet]
+        public IHttpActionResult GetAll()
+        {
+            var breaks = _spotService.GetAll();
+
+            return breaks == null
+                ? (IHttpActionResult)NotFound()
+                : Ok(breaks);
+        }
+
+        [Route("{name:alpha}")]
+        [HttpGet]
+        public IHttpActionResult GetByName(string name)
+        {
+            var beach = _spotService.GetByName(name);
+
+            return beach == null
+                ? (IHttpActionResult)NotFound()
+                : Ok(beach);
+        }
+
+		[Route("{id:int}")]
 		[HttpGet]
 		public IHttpActionResult GetById(int id)
 		{
@@ -42,7 +58,7 @@ namespace ComboSurf.Api.Controllers
 	//write unit tests for controller
 	//try to unit test the service
 
-	//Questions: thinking to implement jsonp for friend
 	//i only check the return type in the test. this is because i found
 	//checking json can be brittle. what do you think? 
+    // reason to have testServer in every test? 
 }
