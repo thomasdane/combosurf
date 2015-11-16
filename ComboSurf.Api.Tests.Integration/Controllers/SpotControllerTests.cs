@@ -29,7 +29,7 @@ namespace ComboSurf.Api.Tests.Integration.Controllers
         public async Task GetMainRoute_ReturnsAllBreaks()
         {
             //Arrange
-            var server = TestServer.Create<TestStartup>(); // reason to have testServer in every test? 
+            var server = TestServer.Create<TestStartup>(); 
             string breaks = "Manly, Maroubra, Durras";
 
             //Act
@@ -76,7 +76,6 @@ namespace ComboSurf.Api.Tests.Integration.Controllers
 			var server = TestServer.Create<TestStartup>();
 			const int expectedId = -10;
 
-			//get http response
 			var response = await server.HttpClient.GetAsync("spots/" + expectedId);
 
 			Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
