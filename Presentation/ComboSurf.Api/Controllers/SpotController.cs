@@ -25,11 +25,11 @@ namespace ComboSurf.Api.Controllers
         [HttpGet]
         public IHttpActionResult GetAll()
         {
-            var breaks = _spotService.GetAll();
+            var spots = _spotService.GetAll();
 
-            return breaks == null
+            return spots == null
                 ? (IHttpActionResult)NotFound()
-                : Ok(breaks);
+                : Ok(spots);
         }
 
         [Route("{name:alpha}")]
@@ -55,10 +55,11 @@ namespace ComboSurf.Api.Controllers
 		}
     }
 	//to do:
-	//write unit tests for controller
 	//try to unit test the service
+	//return a list of spots
+	//
 
-	//i only check the return type in the test. this is because i found
-	//checking json can be brittle. what do you think? 
-    // reason to have testServer in every test? 
+	
+    // fix testServer in every test
+	//fix test for GetAll()
 }
