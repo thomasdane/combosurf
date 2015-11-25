@@ -26,10 +26,15 @@ namespace ComboSurf.Api.Controllers
         public IHttpActionResult GetAll()
         {
             var spots = _spotService.GetAll();
+            List<String> names = new List<String>();
+            foreach (DataTransferObjects.SpotDto spot in spots)
+            {
+                names.Add(spot.Name);
+            }
 
-            return spots == null
+            return names == null
                 ? (IHttpActionResult)NotFound()
-                : Ok(spots);
+                : Ok(names);
         }
 
         [Route("{name:alpha}")]

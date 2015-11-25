@@ -26,7 +26,6 @@ namespace ComboSurf.ApplicationServices
 
 			return new SpotDto
 			{
-				Id = id,
 				Name = name,
 				SwellnetReport = swellnetDto,
 				CoastalwatchReport = coastalwatchDto,
@@ -42,9 +41,9 @@ namespace ComboSurf.ApplicationServices
         {
             return new List<SpotDto>
             {
-	            CreateDummySpotDto(1,"Manly"),
-	            CreateDummySpotDto(2, "Bondi"), 
-				CreateDummySpotDto(3, "Palm Beach")
+	            CreateDummySpotDto(1,"Northern Beaches"),
+	            CreateDummySpotDto(2, "Eastern Beaches"), 
+				CreateDummySpotDto(3, "Batemans Bay")
             };
         }
 

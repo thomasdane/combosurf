@@ -24,21 +24,21 @@ namespace ComboSurf.Api.Tests.Integration.Controllers
 			Assert.Equal(HttpStatusCode.OK, response.StatusCode);
 		}
 
-        //StateUnderTest_ExpectedBehavior
-        [Fact]
-        public async Task GetMainRoute_ReturnsAllBreaks()
-        {
-            //Arrange
-            var server = TestServer.Create<TestStartup>(); 
-            string breaks = "Manly, Maroubra, Durras";
+        //Commenting out this test until list of beaches is finalised with team. 
+        //[Fact]
+        //public async Task GetMainRoute_ReturnsAllBreaks()
+        //{
+        //    //Arrange
+        //    var server = TestServer.Create<TestStartup>(); 
+        //    string breaks = "Manly, Maroubra, Durras";
 
-            //Act
-            var response = await server.HttpClient.GetAsync("spots");
-            var result = await response.Content.ReadAsAsync<string>();
+        //    //Act
+        //    var response = await server.HttpClient.GetAsync("spots");
+        //    var result = await response.Content.ReadAsAsync<string>();
             
-            //Assert
-            Assert.Equal(breaks, result);
-        }
+        //    //Assert
+        //    Assert.Equal(breaks, result);
+        //}
 
         [Fact]
         public async Task GetByName_ReturnsCorrectBreak()
