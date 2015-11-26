@@ -60,11 +60,5 @@ namespace ComboSurf.Api.Controllers
 		}
     }
 	//to do:
-	//try to unit test the service
-	//return a list of spots
-	//
-
-	
     // fix testServer in every test
-	//fix test for GetAll()
 }
