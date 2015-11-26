@@ -16,13 +16,7 @@ namespace ComboSurf.Api.Tests.Integration.Controllers
 	public class SpotControllerTests
 	{
 
-		[Fact]
-		public async Task EndpointReturnsOk()
-		{
-			var server = TestServer.Create<TestStartup>();
-			var response = await server.HttpClient.GetAsync("spots/1");
-			Assert.Equal(HttpStatusCode.OK, response.StatusCode);
-		}
+		
 
         [Fact]
         public async Task GetMainRoute_ReturnsAllBreaks()
@@ -57,8 +51,18 @@ namespace ComboSurf.Api.Tests.Integration.Controllers
             //Assert
             Assert.Equal(expectedBreak, result);
         }
-        
-        [Fact]
+
+
+		#region spots/{id}
+		[Fact]
+		public async Task EndpointReturnsOk()
+		{
+			var server = TestServer.Create<TestStartup>();
+			var response = await server.HttpClient.GetAsync("spots/1");
+			Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+		}
+
+		[Fact]
 		public async Task CheckEndpointReturnsCorrectJson()
 		{
 			var server = TestServer.Create<TestStartup>();
@@ -83,6 +87,7 @@ namespace ComboSurf.Api.Tests.Integration.Controllers
 
 			Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
 		}
+		#endregion
 	}
 
 }

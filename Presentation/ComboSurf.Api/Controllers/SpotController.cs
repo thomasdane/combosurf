@@ -26,15 +26,23 @@ namespace ComboSurf.Api.Controllers
         public IHttpActionResult GetAll()
         {
             var spots = _spotService.GetAll();
-            List<String> names = new List<String>();
-            foreach (DataTransferObjects.SpotDto spot in spots)
-            {
-                names.Add(spot.Name);
-            }
+			if(spots == null) return NotFound();
 
-            return names == null
-                ? (IHttpActionResult)NotFound()
-                : Ok(names);
+	        return Ok(spots.Select(x => x.Name));
+			//return all spots
+			//add test for not found
+
+			//create repo interface
+			//create folder repo in infra
+			//create repo classs implementing inferface
+			//put the code in the repo from service
+			//inject cool repository into service
+			//so repo needs contrcsutot
+			//constructor needas a param
+			//param should be the interface the repository
+			//repo should have getbyid and service should call it
+			//repo should return a domain object
+			//create domain model for spot
         }
 
         [Route("{name:alpha}")]

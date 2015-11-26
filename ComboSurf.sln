@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{1D5D7532-9C80-4FE8-AFA2-59C8E71F433E}"
 	ProjectSection(SolutionItems) = preProject
@@ -31,6 +31,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataTransferObjects", "DataTransferObjects\DataTransferObjects.csproj", "{FD517765-E8E8-4256-9250-548672E96DA0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComboSurf.Api.Tests.Unit", "Tests\ComboSurf.Api.Tests.Unit\ComboSurf.Api.Tests.Unit.csproj", "{8B8BF2DE-0FC3-45D0-9E47-13C304965C0E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComboSurf.ApplicationServices.Test.Unit", "Tests\ComboSurf.ApplicationServices.Test.Unit\ComboSurf.ApplicationServices.Test.Unit.csproj", "{68163A80-81E2-4B46-8A6B-454B47DC5E5B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -70,6 +72,10 @@ Global
 		{8B8BF2DE-0FC3-45D0-9E47-13C304965C0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8B8BF2DE-0FC3-45D0-9E47-13C304965C0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8B8BF2DE-0FC3-45D0-9E47-13C304965C0E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{68163A80-81E2-4B46-8A6B-454B47DC5E5B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{68163A80-81E2-4B46-8A6B-454B47DC5E5B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{68163A80-81E2-4B46-8A6B-454B47DC5E5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{68163A80-81E2-4B46-8A6B-454B47DC5E5B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -80,5 +86,6 @@ Global
 		{DBBA4C21-D2D6-4E90-AE02-4385BB3414AA} = {88579C8D-D1FE-4A86-9917-6D5FABD954A2}
 		{FD517765-E8E8-4256-9250-548672E96DA0} = {F0D090AB-FE4D-46B0-99E8-5D6E8AFFFF74}
 		{8B8BF2DE-0FC3-45D0-9E47-13C304965C0E} = {88579C8D-D1FE-4A86-9917-6D5FABD954A2}
+		{68163A80-81E2-4B46-8A6B-454B47DC5E5B} = {88579C8D-D1FE-4A86-9917-6D5FABD954A2}
 	EndGlobalSection
 EndGlobal
