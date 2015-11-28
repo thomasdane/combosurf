@@ -41,6 +41,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReportRepository.cs" />
+    <Compile Include="SpotRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ComboSurf.Domain\ComboSurf.Domain.csproj">
