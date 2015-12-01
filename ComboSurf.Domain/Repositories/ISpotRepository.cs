@@ -4,11 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ComboSurf.Domain.UserContext.Models;
+using DataTransferObjects;
 
 namespace ComboSurf.Domain.Repositories
 {
 	public interface ISpotRepository
 	{
-		Spot GetByName(string name);
+		SpotDto GetByName(string name);
 	}
 }

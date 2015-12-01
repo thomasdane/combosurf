@@ -10,7 +10,7 @@ namespace ComboSurf.Domain.Services
 	public interface ISpotService
 	{
         IEnumerable<SpotDto> GetAll();
-        string GetByName(string name);
+        SpotDto GetByName(string name);
         SpotDto GetById(int id);
 	}
 }
