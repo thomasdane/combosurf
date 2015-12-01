@@ -13,7 +13,23 @@ namespace ComboSurf.Infrastructure
 {
 	class SpotRepository : ISpotRepository
 	{
+		private readonly ISpotRepository _spotRepository;
+
+		public SpotRepository(ISpotRepository spotRepository)
+		{
+			_spotRepository = spotRepository;
+		}	
+		
 		public SpotDto GetByName(string name)
+		{
+			var spotDto = _spotRepository.GetByName("Manly");
+			return spotDto;
+
+			//var spotDto = CreateDummySpotDto("Northern Beaches");
+			//return spotDto;
+		}
+
+		private SpotDto CreateDummySpotDto(string name)
 		{
 			var swellnetDto = new SwellnetDto()
 			{
@@ -27,9 +43,8 @@ namespace ComboSurf.Infrastructure
 					"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo."
 			};
 
-			var spotDto = new SpotDto
+			return new SpotDto
 			{
-				Id = 1,
 				Name = name,
 				SwellnetReport = swellnetDto,
 				CoastalwatchReport = coastalwatchDto,
@@ -39,8 +54,6 @@ namespace ComboSurf.Infrastructure
 				WindDirection = "Westerly",
 				WindSpeed = "3 Knots"
 			};
-
-			return spotDto;
 		}
 	}
 }
