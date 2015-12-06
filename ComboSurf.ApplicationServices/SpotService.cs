@@ -3,28 +3,28 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ComboSurf.Domain.Repositories;
 using ComboSurf.Domain.Services;
 using DataTransferObjects;
+using ComboSurf.Domain.Repositories;
 using ComboSurf.Infrastructure;
 
 namespace ComboSurf.ApplicationServices
 {
 	public class SpotService : ISpotService
 	{
-		//private readonly ISpotRepository _spotRepository;
+        private readonly ISpotRepository _spotRepository;
 
-		//public SpotService(ISpotRepository spotRepository)
-		//{
-		//	_spotRepository = spotRepository;
-		//}
+        public SpotService(ISpotRepository spotRepository)
+        {
+            _spotRepository = spotRepository;
+        }
 
 		public SpotDto GetByName(string name)
 		{
-			var spotDto = CreateDummySpotDto(1, "Northern Beaches");
-			return spotDto; 
-			//var spot = _spotRepository.GetByName("manly");
-			//return spot;
+            //var spotDto = CreateDummySpotDto(1, "Northern Beaches");
+            //return spotDto; 
+            var spot = _spotRepository.GetByName("manly");
+            return spot;
 		}
 
 		public SpotDto GetById(int id)

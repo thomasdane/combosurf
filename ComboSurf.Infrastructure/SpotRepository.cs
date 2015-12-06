@@ -11,22 +11,12 @@ using DataTransferObjects;
 
 namespace ComboSurf.Infrastructure
 {
-	class SpotRepository : ISpotRepository
-	{
-		private readonly ISpotRepository _spotRepository;
-
-		public SpotRepository(ISpotRepository spotRepository)
-		{
-			_spotRepository = spotRepository;
-		}	
-		
+	public class SpotRepository : ISpotRepository
+	{	
 		public SpotDto GetByName(string name)
 		{
-			var spotDto = _spotRepository.GetByName("Manly");
-			return spotDto;
-
-			//var spotDto = CreateDummySpotDto("Northern Beaches");
-			//return spotDto;
+            var spotDto = CreateDummySpotDto("Northern Beaches");
+            return spotDto;
 		}
 
 		private SpotDto CreateDummySpotDto(string name)

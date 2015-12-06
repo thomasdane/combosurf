@@ -8,13 +8,15 @@ using Autofac;
 using Autofac.Integration.WebApi;
 using ComboSurf.ApplicationServices;
 using ComboSurf.Domain.Services;
+using ComboSurf.Domain.Repositories;
+using ComboSurf.Infrastructure;
 using Microsoft.Owin;
 using Newtonsoft.Json.Serialization;
 using Owin;
 
 namespace ComboSurf.Api
 {
-	[assembly: OwinStartup(typeof(ComboSurf.Api.Startup))]
+	//[assembly: OwinStartup(typeof(ComboSurf.Api.Startup))]
     public class Startup
     {	
         public void Configuration(IAppBuilder app)
@@ -28,6 +30,7 @@ namespace ComboSurf.Api
 		    var builder = new ContainerBuilder();
 		    builder.RegisterApiControllers(Assembly.GetExecutingAssembly()).InstancePerRequest();
 		    builder.RegisterType<SpotService>().As<ISpotService>().InstancePerRequest();
+            builder.RegisterType<SpotRepository>().As<ISpotRepository>().InstancePerRequest();
 		    var container = builder.Build();
 			configuration.DependencyResolver = new AutofacWebApiDependencyResolver(container);
 			configuration.MapHttpAttributeRoutes();

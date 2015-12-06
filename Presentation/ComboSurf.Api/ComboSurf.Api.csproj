@@ -126,6 +126,10 @@
       <Project>{40A61445-F2A4-4502-9806-3575CEC25335}</Project>
       <Name>ComboSurf.Domain</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\ComboSurf.Infrastructure\ComboSurf.Infrastructure.csproj">
+      <Project>{cba85e1d-422b-48be-8ce8-1d06427e5b61}</Project>
+      <Name>ComboSurf.Infrastructure</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\DataTransferObjects\DataTransferObjects.csproj">
       <Project>{FD517765-E8E8-4256-9250-548672E96DA0}</Project>
       <Name>DataTransferObjects</Name>
