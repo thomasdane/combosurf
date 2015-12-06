@@ -53,7 +53,7 @@ namespace ComboSurf.ApplicationServices
 				SwellnetReport = swellnetDto,
 				CoastalwatchReport = coastalwatchDto,
 				Period = "16 second",
-				SwellDirection = "North Easterly",
+				SwellDirection = "Easterly",
 				SwellHeight = "4-5ft",
 				WindDirection = "Westerly",
 				WindSpeed = "3 Knots"

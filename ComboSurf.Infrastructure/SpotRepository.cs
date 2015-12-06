@@ -15,7 +15,7 @@ namespace ComboSurf.Infrastructure
 	{	
 		public SpotDto GetByName(string name)
 		{
-            var spotDto = CreateDummySpotDto("Northern Beaches");
+            var spotDto = CreateDummySpotDto("Eastern Beaches");
             return spotDto;
 		}
 

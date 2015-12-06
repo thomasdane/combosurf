@@ -4,6 +4,7 @@ using System.Net.Http.Formatting;
 using System.Reflection;
 using System.Threading.Tasks;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using Autofac;
 using Autofac.Integration.WebApi;
 using ComboSurf.ApplicationServices;
@@ -37,6 +38,8 @@ namespace ComboSurf.Api
 		    var JsonFormatter = configuration.Formatters.OfType<JsonMediaTypeFormatter>().First();
 		    JsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
 		    configuration.Formatters.Remove(configuration.Formatters.OfType<XmlMediaTypeFormatter>().First());
+            var corsAttr = new EnableCorsAttribute("*", "*", "*");
+            configuration.EnableCors(corsAttr);
 		    app.UseWebApi(configuration);
 	    };
     }
