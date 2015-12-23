@@ -8,7 +8,13 @@ namespace DataTransferObjects
 {
 	public class CoastalwatchDto
 	{
-		public string Content { get; set; }
+        public string Name { get; set; }
+        public string SwellHeight { get; set; }
+        public string SwellDirection { get; set; }
+        public string Period { get; set; }
+        public string WindDirection { get; set; }
+        public string WindSpeed { get; set; }
+        public string Content { get; set; }
 	}
 }
 
