@@ -22,7 +22,7 @@ namespace ComboSurf.ApplicationServices
 		public SpotDto GetByName(string name)
 		{
             var spot = _spotRepository.GetByName("manly");
-            //take an average of spots? put that business logic code here
+            //business logic code here - average of reports
             return spot;
 		}
 
@@ -56,11 +56,12 @@ namespace ComboSurf.ApplicationServices
                     "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo."
             };
 
+			List<SwellnetDto> reports = new List<SwellnetDto> {swellnetDto}; 
+
             return new SpotDto
             {
                 Name = name,
-                SwellnetReport = swellnetDto,
-                CoastalwatchReport = coastalwatchDto
+                Reports = reports
             };
         }
 	}

@@ -49,11 +49,11 @@ namespace ComboSurf.Api.Controllers
         [HttpGet]
         public IHttpActionResult GetByName(string name)
         {
-            var beach = _spotService.GetByName(name);
+            var spot = _spotService.GetByName(name);
 
-            return beach == null
+            return spot == null
                 ? (IHttpActionResult)NotFound()
-                : Ok(beach);
+                : Ok(spot);
         }
 
 		[Route("{id:int}")]

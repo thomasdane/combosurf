@@ -10,7 +10,6 @@ namespace DataTransferObjects
 	{
 		public int Id { get; set; }
         public string Name { get; set; }
-		public SwellnetDto SwellnetReport { get; set; }
-		public CoastalwatchDto CoastalwatchReport { get; set; }
+		public List<SwellnetDto> Reports { get; set; }
 	}
 }
