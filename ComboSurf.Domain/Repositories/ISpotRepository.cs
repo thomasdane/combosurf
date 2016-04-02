@@ -10,6 +10,6 @@ namespace ComboSurf.Domain.Repositories
 {
 	public interface ISpotRepository
 	{
-		SpotDto GetByName(string name);
+		Task<SpotDto> GetByName(string name);
 	}
 }

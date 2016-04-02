@@ -1,21 +1,43 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.Configuration;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
-using ComboSurf.Domain.Models;
 using ComboSurf.Domain.Repositories;
-using ComboSurf.Domain.UserContext.Models;
 using DataTransferObjects;
-
+using MongoDB.Bson;
+using MongoDB.Driver;
+using Json;
 
 namespace ComboSurf.Infrastructure
 {
 	public class SpotRepository : ISpotRepository
-	{	
-		public SpotDto GetByName(string name)
+	{
+		
+		public async Task<SpotDto> GetByName(string name)
 		{
-            var spotDto = CreateDummySpotDto("Eastern Beaches");
+            //here is where i hit the database
+			var client = new MongoClient("mongodb://localhost:27017");
+			var database = client.GetDatabase("partywave");
+
+			var collection = database.GetCollection<BsonDocument>("scrapeResults");
+			var filter = new BsonDocument();
+			var count = 0;
+			using (var cursor = await collection.FindAsync(filter))
+			{
+				while (await cursor.MoveNextAsync())
+				{
+					var batch = cursor.Current;
+					foreach (var document in batch)
+					{
+						// process document
+						count++;
+					}
+				}
+			}
+
+			var spotDto = CreateDummySpotDto("Eastern Beaches");
+			spotDto.Name = count.ToString();
             return spotDto;
 		}
 
@@ -42,6 +64,8 @@ namespace ComboSurf.Infrastructure
                 WindSpeed = "3 Knots",
                 Content = "Still looks a bit average but decent 3ft now at S facing beaches. Morning Report: Waves 2ft +, Swell SE @ 7.7 sec, Winds SSE-SE-ESE 8-18 knots. Still looks a bit average but improvement on yesterday. Size around 2ft, maybe a little bigger S facing mostly from the SE."
 			};
+
+
 			List<SwellnetDto> reports = new List<SwellnetDto> { coastalwatchDto, swellnetDto}; 
 
 			return new SpotDto

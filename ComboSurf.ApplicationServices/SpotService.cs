@@ -23,7 +23,7 @@ namespace ComboSurf.ApplicationServices
 		{
             var spot = _spotRepository.GetByName("manly");
             //business logic code here - average of reports
-            return spot;
+            return spot.Result;
 		}
 
 		public SpotDto GetById(int id)
