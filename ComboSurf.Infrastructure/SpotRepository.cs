@@ -13,31 +13,25 @@ namespace ComboSurf.Infrastructure
 {
 	public class SpotRepository : ISpotRepository
 	{
-		
-		public async Task<SpotDto> GetByName(string name)
+
+		public async Task<string> Db()
 		{
-            //here is where i hit the database
-			var client = new MongoClient("mongodb://localhost:27017");
+			var client = new MongoClient();
 			var database = client.GetDatabase("partywave");
-
 			var collection = database.GetCollection<BsonDocument>("scrapeResults");
-			var filter = new BsonDocument();
-			var count = 0;
-			using (var cursor = await collection.FindAsync(filter))
-			{
-				while (await cursor.MoveNextAsync())
-				{
-					var batch = cursor.Current;
-					foreach (var document in batch)
-					{
-						// process document
-						count++;
-					}
-				}
-			}
 
+			var document = await collection.Find(new BsonDocument()).FirstOrDefaultAsync();
+			return document.ToString();
+		}
+		
+		public SpotDto GetByName(string name)
+		{
 			var spotDto = CreateDummySpotDto("Eastern Beaches");
-			spotDto.Name = count.ToString();
+
+			var result = Db().Result;
+
+			var foo = result;
+
             return spotDto;
 		}
 
