@@ -14,23 +14,23 @@ namespace ComboSurf.Infrastructure
 	public class SpotRepository : ISpotRepository
 	{
 
-		public async Task<string> Db()
+		public async Task<BsonDocument> Db()
 		{
 			var client = new MongoClient();
 			var database = client.GetDatabase("partywave");
 			var collection = database.GetCollection<BsonDocument>("scrapeResults");
 
 			var document = await collection.Find(new BsonDocument()).FirstOrDefaultAsync();
-			return document.ToString();
+			return document;
 		}
 		
 		public SpotDto GetByName(string name)
 		{
 			var spotDto = CreateDummySpotDto("Eastern Beaches");
 
-			var result = Db().Result;
-
-			var foo = result;
+			//var result = Db().Result;
+			var result = Task.Run(() => Db()).Result;
+			spotDto.Name = result.ToString();
 
             return spotDto;
 		}
