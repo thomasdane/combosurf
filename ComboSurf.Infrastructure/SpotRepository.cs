@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using ComboSurf.Domain.Repositories;
@@ -20,7 +21,8 @@ namespace ComboSurf.Infrastructure
 			var database = client.GetDatabase("partywave");
 			var collection = database.GetCollection<BsonDocument>("scrapeResults");
 
-			var document = await collection.Find(new BsonDocument()).FirstOrDefaultAsync();
+			var sort = Builders<BsonDocument>.Sort.Descending("spot");
+			var document = await collection.Find(new BsonDocument()).Sort(sort).FirstOrDefaultAsync();
 			return document;
 		}
 		
@@ -30,7 +32,15 @@ namespace ComboSurf.Infrastructure
 
 			//var result = Db().Result;
 			var result = Task.Run(() => Db()).Result;
-			spotDto.Name = result.ToString();
+			var blah = result.ToJson();
+			var x = new List<string>();
+
+			foreach (var prop in blah)
+			{
+				x.Add(prop.ToString());
+			}
+
+			spotDto.Name = x.Last();
 
             return spotDto;
 		}
