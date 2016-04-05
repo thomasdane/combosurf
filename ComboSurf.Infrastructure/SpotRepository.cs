@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Linq;
-using System.Runtime.InteropServices;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using ComboSurf.Domain.Repositories;
 using DataTransferObjects;
 using MongoDB.Bson;
+using MongoDB.Bson.IO;
 using MongoDB.Driver;
-using Json;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace ComboSurf.Infrastructure
 {
@@ -30,17 +28,18 @@ namespace ComboSurf.Infrastructure
 		{
 			var spotDto = CreateDummySpotDto("Eastern Beaches");
 
-			//var result = Db().Result;
 			var result = Task.Run(() => Db()).Result;
-			var blah = result.ToJson();
+			var jsonWriterSettings = new JsonWriterSettings { OutputMode = JsonOutputMode.Strict };
+			var blah = JObject.Parse(result.ToJson(jsonWriterSettings));
+
 			var x = new List<string>();
 
-			foreach (var prop in blah)
+			foreach (var item in blah)
 			{
-				x.Add(prop.ToString());
+				x.Add(item.Key);
+				x.Add(item.Value.ToString());
 			}
-
-			spotDto.Name = x.Last();
+			//spotDto.Name = x.Last();
 
             return spotDto;
 		}
