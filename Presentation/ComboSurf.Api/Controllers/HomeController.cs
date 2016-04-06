@@ -6,7 +6,7 @@ using System.Web.Http;
 
 namespace ComboSurf.Api.Controllers
 {
-    [Route("Home")]
+    [Route("")]
     public class HomeController : ApiController
     {
         [HttpGet]

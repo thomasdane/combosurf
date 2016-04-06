@@ -28,21 +28,7 @@ namespace ComboSurf.Api.Controllers
             var spots = _spotService.GetAll();
 			if(spots == null) return NotFound();
 
-	        return Ok(spots.Select(x => x.Name));
-			//return all spots
-			//add test for not found
-
-			//create repo interface
-			//create folder repo in infra
-			//create repo classs implementing inferface
-			//put the code in the repo from service
-			//inject cool repository into service
-			//so repo needs contrcsutot
-			//constructor needas a param
-			//param should be the interface the repository
-			//repo should have getbyid and service should call it
-			//repo should return a domain object
-			//create domain model for spot
+	        return Ok(spots);
         }
 
         [Route("{name:alpha}")]
@@ -67,6 +53,4 @@ namespace ComboSurf.Api.Controllers
 				: Ok(spot);
 		}
     }
-	//to do:
-    // fix testServer in every test
 }

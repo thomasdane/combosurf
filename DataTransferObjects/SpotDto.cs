@@ -8,8 +8,7 @@ namespace DataTransferObjects
 {
 	public class SpotDto
 	{
-		public int Id { get; set; }
-        public string Name { get; set; }
-		public List<SwellnetDto> Reports { get; set; }
+		public Object _id { get; set; }
+		public Report spot { get; set; }
 	}
 }
