@@ -1,9 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using ComboSurf.Domain.Repositories;
 using DataTransferObjects;
 using MongoDB.Bson;
 using MongoDB.Bson.IO;
+using MongoDB.Bson.Serialization;
 using MongoDB.Driver;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -13,6 +15,23 @@ namespace ComboSurf.Infrastructure
 	public class SpotRepository : ISpotRepository
 	{
 
+		public class Report
+		{
+			public Object _id { get; set; }
+			public Spot spot { get; set; }
+		}
+		
+		public class Spot
+		{
+				public string Name { get; set; }
+				public string swellHeight { get; set; }
+				public string swellDirection { get; set; }
+				public string period { get; set; }
+				public string windDirection { get; set; }
+				public string windSpeed { get; set; }
+				public string content { get; set; }
+		}
+		
 		public async Task<BsonDocument> Db()
 		{
 			var client = new MongoClient();
@@ -29,18 +48,9 @@ namespace ComboSurf.Infrastructure
 			var spotDto = CreateDummySpotDto("Eastern Beaches");
 
 			var result = Task.Run(() => Db()).Result;
-			var jsonWriterSettings = new JsonWriterSettings { OutputMode = JsonOutputMode.Strict };
-			var blah = JObject.Parse(result.ToJson(jsonWriterSettings));
+			var blah = BsonSerializer.Deserialize<Report>(result);
 
-			var x = new List<string>();
-
-			foreach (var item in blah)
-			{
-				x.Add(item.Key);
-				x.Add(item.Value.ToString());
-			}
-			//spotDto.Name = x.Last();
-
+			var x = blah;
             return spotDto;
 		}
 
