@@ -20,22 +20,17 @@ namespace ComboSurf.Infrastructure
 			var client = new MongoClient();
 			var database = client.GetDatabase("partywave");
 			var collection = database.GetCollection<BsonDocument>("scrapeResults");
-
-			var sort = Builders<BsonDocument>.Sort.Descending("spot");
-			var document = await collection.Find(new BsonDocument()).Sort(sort).FirstOrDefaultAsync();
+			var sortFilter = Builders<BsonDocument>.Sort.Descending("spot");
+			var document = await collection.Find(new BsonDocument()).Sort(sortFilter).FirstOrDefaultAsync();
 			return document;
 		}
 		
 		public SpotDto GetByName(string name)
 		{
-			var result = Task.Run(() => QueryDatabase()).Result;
-			var results = BsonSerializer.Deserialize<SpotDto>(result);
-
-			var blah = Mapper.Map<SpotDto>(results);
-			
-            return blah;
+			var document = Task.Run(() => QueryDatabase()).Result;
+			var jsonDocument = BsonSerializer.Deserialize<SpotDto>(document);
+			var spot = Mapper.Map<SpotDto>(jsonDocument);
+            return spot;
 		}
-
 	}
 }
-				
