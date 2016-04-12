@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Threading.Tasks;
 using AutoMapper;
 using ComboSurf.Domain.Repositories;
@@ -29,17 +30,9 @@ namespace ComboSurf.Infrastructure
 		public SpotDto GetByName(string name)
 		{
 			var document = Task.Run(() => QueryDatabase(name)).Result;
-			try
-			{
-				var jsonDocument = BsonSerializer.Deserialize<SpotDto>(document);
-				var spot = Mapper.Map<SpotDto>(jsonDocument);
-				return spot;
-			}
-			catch
-			{
-				//the controller will catch this and return 404
-				return null;
-			}		
+			var jsonDocument = BsonSerializer.Deserialize<SpotDto>(document);
+			var spot = Mapper.Map<SpotDto>(jsonDocument);
+			return spot;	
 		}
 	}
 }

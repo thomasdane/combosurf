@@ -11,6 +11,5 @@ namespace ComboSurf.Domain.Services
 	{
         IEnumerable<SpotDto> GetAll();
         SpotDto GetByName(string name);
-        SpotDto GetById(int id);
 	}
 }

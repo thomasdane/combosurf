@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Web;
 using System.Web.Http;
 using System.Web.Http.Results;
+using System.Web.UI.WebControls;
 using Newtonsoft.Json;
 using ComboSurf.Api.Models;
 using ComboSurf.ApplicationServices;
@@ -35,22 +38,15 @@ namespace ComboSurf.Api.Controllers
         [HttpGet]
         public IHttpActionResult GetByName(string name)
         {
-            var spot = _spotService.GetByName(name);
-
-            return spot == null
-                ? (IHttpActionResult)NotFound()
-                : Ok(spot);
+	        try
+	        {
+		        var spot = _spotService.GetByName(name);
+		        return Ok(spot);
+	        }
+	        catch
+	        {
+		        return Content(HttpStatusCode.NotFound, "This spot does not yet exist");
+	        }
         }
-
-		[Route("{id:int}")]
-		[HttpGet]
-		public IHttpActionResult GetById(int id)
-		{
-			var spot = _spotService.GetById(id);
-
-			return spot == null 
-				? (IHttpActionResult) NotFound()
-				: Ok(spot);
-		}
     }
 }
