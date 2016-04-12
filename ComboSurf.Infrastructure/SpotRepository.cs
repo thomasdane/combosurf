@@ -20,7 +20,7 @@ namespace ComboSurf.Infrastructure
 			var client = new MongoClient();
 			var database = client.GetDatabase("partywave");
 			var collection = database.GetCollection<BsonDocument>("scrapeResults");
-			var sortFilter = Builders<BsonDocument>.Sort.Descending("spot");
+			var sortFilter = Builders<BsonDocument>.Sort.Descending("_id");
 			var document = await collection.Find(new BsonDocument()).Sort(sortFilter).FirstOrDefaultAsync();
 			return document;
 		}
