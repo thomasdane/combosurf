@@ -15,22 +15,31 @@ namespace ComboSurf.Infrastructure
 {
 	public class SpotRepository : ISpotRepository
 	{
-		public async Task<BsonDocument> QueryDatabase()
+		public async Task<BsonDocument> QueryDatabase(string name)
 		{
 			var client = new MongoClient();
 			var database = client.GetDatabase("partywave");
 			var collection = database.GetCollection<BsonDocument>("scrapeResults");
+			var query = Builders<BsonDocument>.Filter.Eq("name", name.ToLower());
 			var sortFilter = Builders<BsonDocument>.Sort.Descending("_id");
-			var document = await collection.Find(new BsonDocument()).Sort(sortFilter).FirstOrDefaultAsync();
+			var document = await collection.Find(query).Sort(sortFilter).FirstOrDefaultAsync();
 			return document;
 		}
 		
 		public SpotDto GetByName(string name)
 		{
-			var document = Task.Run(() => QueryDatabase()).Result;
-			var jsonDocument = BsonSerializer.Deserialize<SpotDto>(document);
-			var spot = Mapper.Map<SpotDto>(jsonDocument);
-            return spot;
+			var document = Task.Run(() => QueryDatabase(name)).Result;
+			try
+			{
+				var jsonDocument = BsonSerializer.Deserialize<SpotDto>(document);
+				var spot = Mapper.Map<SpotDto>(jsonDocument);
+				return spot;
+			}
+			catch
+			{
+				//the controller will catch this and return 404
+				return null;
+			}		
 		}
 	}
 }

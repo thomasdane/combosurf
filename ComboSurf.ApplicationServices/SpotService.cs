@@ -16,9 +16,7 @@ namespace ComboSurf.ApplicationServices
 
 		public SpotDto GetByName(string name)
 		{
-            var spot = _spotRepository.GetByName("manly");
-            //business logic code here - average of reports
-            return spot;
+            return _spotRepository.GetByName(name);
 		}
 
 		public SpotDto GetById(int id)
@@ -30,16 +28,5 @@ namespace ComboSurf.ApplicationServices
 		{
 			return new List<SpotDto>();
 		}
-
 	}
 }
-
-/* NOTES:
- * core folder. this is like a framework for each project. core should be re-usable. 
- * entities have ids. value objects do not.
- * internal is only for project, public is for whole solution
- * entity/model is singular. because about an object/instance
- * contstructur ctor and tab
- * guid factory method vs new guid
- * factory method returns back a new object
-*/
