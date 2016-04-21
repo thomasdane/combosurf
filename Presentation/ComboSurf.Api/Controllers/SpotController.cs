@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Web;
 using System.Web.Http;
 using System.Web.Http.Results;
+using System.Web.UI.WebControls;
 using Newtonsoft.Json;
 using ComboSurf.Api.Models;
 using ComboSurf.ApplicationServices;
@@ -28,45 +31,22 @@ namespace ComboSurf.Api.Controllers
             var spots = _spotService.GetAll();
 			if(spots == null) return NotFound();
 
-	        return Ok(spots.Select(x => x.Name));
-			//return all spots
-			//add test for not found
-
-			//create repo interface
-			//create folder repo in infra
-			//create repo classs implementing inferface
-			//put the code in the repo from service
-			//inject cool repository into service
-			//so repo needs contrcsutot
-			//constructor needas a param
-			//param should be the interface the repository
-			//repo should have getbyid and service should call it
-			//repo should return a domain object
-			//create domain model for spot
+	        return Ok(spots);
         }
 
         [Route("{name:alpha}")]
         [HttpGet]
         public IHttpActionResult GetByName(string name)
         {
-            var spot = _spotService.GetByName(name);
-
-            return spot == null
-                ? (IHttpActionResult)NotFound()
-                : Ok(spot);
+	        try
+	        {
+		        var spot = _spotService.GetByName(name);
+		        return Ok(spot);
+	        }
+	        catch
+	        {
+		        return Content(HttpStatusCode.NotFound, "This spot does not yet exist");
+	        }
         }
-
-		[Route("{id:int}")]
-		[HttpGet]
-		public IHttpActionResult GetById(int id)
-		{
-			var spot = _spotService.GetById(id);
-
-			return spot == null 
-				? (IHttpActionResult) NotFound()
-				: Ok(spot);
-		}
     }
-	//to do:
-    // fix testServer in every test
 }

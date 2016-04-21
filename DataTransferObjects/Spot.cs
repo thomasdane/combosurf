@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace DataTransferObjects
 {
-	public class SwellnetDto
+	public class Spot
 	{
-        public string Name { get; set; }
+		public Object _id { get; set; }        
+		public string Name { get; set; }
         public string SwellHeight { get; set; }
         public string SwellDirection { get; set; }
         public string Period { get; set; }

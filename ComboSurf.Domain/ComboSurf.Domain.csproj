@@ -42,9 +42,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\ISpotRepository.cs" />
     <Compile Include="Services\ISpotService.cs" />
-    <Compile Include="UserContext\Models\IEntity.cs" />
-    <Compile Include="UserContext\Models\Report.cs" />
-    <Compile Include="UserContext\Models\Spot.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataTransferObjects\DataTransferObjects.csproj">

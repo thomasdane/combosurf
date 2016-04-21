@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Http.Results;
@@ -21,7 +22,7 @@ namespace ComboSurf.Api.Tests.Unit
 		[Fact]
 		public void ShouldCreateController()
 		{
-			_mockedSpotService.GetById(Arg.Any<int>()).ReturnsForAnyArgs(new SpotDto() {});
+			_mockedSpotService.GetByName(Arg.Any<string>()).ReturnsForAnyArgs(new SpotDto() {});
 
 			var controller = new SpotController(_mockedSpotService);
 			Assert.NotNull(controller);
@@ -30,29 +31,10 @@ namespace ComboSurf.Api.Tests.Unit
 		[Fact]
 		public void ShouldReturnSpotWhenPassedValidId()
 		{
-			_mockedSpotService.GetById(Arg.Any<int>()).ReturnsForAnyArgs(new SpotDto() { });
+			_mockedSpotService.GetByName(Arg.Any<string>()).ReturnsForAnyArgs(new SpotDto() { });
 			var controller = new SpotController(_mockedSpotService);
-			var result = controller.GetById(5);
+			var result = controller.GetByName("easternbeaches");
 			Assert.IsType<OkNegotiatedContentResult<SpotDto>>(result);
 		}
-
-		[Fact]
-		public void ShouldReturnNotFoundWhenPassedInvalidId()
-		{
-			_mockedSpotService.GetById(Arg.Any<int>()).Returns(x => null);
-			var controller = new SpotController(_mockedSpotService);
-			var result = controller.GetById(50000);
-			Assert.IsType<NotFoundResult>(result);
-		}
 	}
-
-
-	//public class FakeSpotService : ISpotService
-	//{
-
-	//	public SpotDto GetById(int id)
-	//	{
-	//		return null;
-	//	}
-	//}
 }
