@@ -26,6 +26,15 @@ namespace ComboSurf.Infrastructure
 			var document = await collection.Find(query).Sort(sortFilter).FirstOrDefaultAsync();
 			return document;
 		}
+
+		public List<string> GetAll()
+		{
+			//hard code this for now because we are only doing 3 spots
+			//later we will extend to more and actually query data base here
+			var spots = new List<string> 
+			{"EasternBeaches", "NorthernBeaches", "BatemansBay"};
+			return spots;
+		} 
 		
 		public SpotDto GetByName(string name)
 		{

@@ -19,9 +19,9 @@ namespace ComboSurf.ApplicationServices
             return _spotRepository.GetByName(name);
 		}
 
-		public IEnumerable<SpotDto> GetAll()
+		public IEnumerable<string> GetAll()
 		{
-			return new List<SpotDto>();
+			return _spotRepository.GetAll();
 		}
 	}
 }
