@@ -15,9 +15,10 @@ using Microsoft.Owin;
 using Newtonsoft.Json.Serialization;
 using Owin;
 
+[assembly: OwinStartup(typeof(ComboSurf.Api.Startup))]
 namespace ComboSurf.Api
 {
-	//[assembly: OwinStartup(typeof(ComboSurf.Api.Startup))]
+	
     public class Startup
     {	
         public void Configuration(IAppBuilder app)
