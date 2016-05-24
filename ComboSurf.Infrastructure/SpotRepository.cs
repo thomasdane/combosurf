@@ -16,7 +16,33 @@ namespace ComboSurf.Infrastructure
 {
 	public class SpotRepository : ISpotRepository
 	{
-		public async Task<BsonDocument> QueryDatabase(string name)
+	
+
+		public List<string> GetAll()
+		{
+			//hard code this for now because we are only doing 3 spots
+			//later we will extend to actually query database here
+			var spots = new List<string> 
+			{"EasternBeaches", "NorthernBeaches", "BatemansBay"};
+			return spots;
+		} 
+		
+		public SpotDto GetByName(string name)
+		{
+			var document = Task.Run(() => QueryDatabaseByName(name)).Result;
+			var jsonDocument = BsonSerializer.Deserialize<SpotDto>(document);
+			var spot = Mapper.Map<SpotDto>(jsonDocument);
+			if (spot.reports.Count < 1)
+			{
+				var oldResults = Task.Run(() => GetLatestReport()).Result;
+				var json = BsonSerializer.Deserialize<SpotDto>(oldResults);
+				var oldSpot = Mapper.Map<SpotDto>(json);
+				return oldSpot;
+			}
+			return spot;	
+		}
+
+		public async Task<BsonDocument> QueryDatabaseByName(string name)
 		{
 			var client = new MongoClient();
 			var database = client.GetDatabase("partywave");
@@ -27,21 +53,14 @@ namespace ComboSurf.Infrastructure
 			return document;
 		}
 
-		public List<string> GetAll()
+		public async Task<BsonDocument> GetLatestReport()
 		{
-			//hard code this for now because we are only doing 3 spots
-			//later we will extend to more and actually query data base here
-			var spots = new List<string> 
-			{"EasternBeaches", "NorthernBeaches", "BatemansBay"};
-			return spots;
-		} 
-		
-		public SpotDto GetByName(string name)
-		{
-			var document = Task.Run(() => QueryDatabase(name)).Result;
-			var jsonDocument = BsonSerializer.Deserialize<SpotDto>(document);
-			var spot = Mapper.Map<SpotDto>(jsonDocument);
-			return spot;	
+			var client = new MongoClient();
+			var database = client.GetDatabase("partywave");
+			var collection = database.GetCollection<BsonDocument>("scrapeResults");
+			FilterDefinition<BsonDocument> query = ("{reports: {$not: {$size: 0}}}.limit(1).sort({$natural:-1})");
+			var document = await collection.Find(query).FirstOrDefaultAsync();
+			return document;
 		}
 	}
 }
