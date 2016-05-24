@@ -58,7 +58,7 @@ namespace ComboSurf.Infrastructure
 			var client = new MongoClient();
 			var database = client.GetDatabase("partywave");
 			var collection = database.GetCollection<BsonDocument>("scrapeResults");
-			FilterDefinition<BsonDocument> query = ("{reports: {$not: {$size: 0}}}.limit(1).sort({$natural:-1})");
+			FilterDefinition<BsonDocument> query = ("{'reports.1': {$exists: true}}.limit(1).sort({$natural:-1})");
 			var document = await collection.Find(query).FirstOrDefaultAsync();
 			return document;
 		}
