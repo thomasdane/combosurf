@@ -23,7 +23,7 @@ namespace ComboSurf.Infrastructure
 			//hard code this for now because we are only doing 3 spots
 			//later we will extend to actually query database here
 			var spots = new List<string> 
-			{"EasternBeaches", "NorthernBeaches", "BatemansBay"};
+			{"EasternBeaches", "NorthernBeaches", "SouthCoast"};
 			return spots;
 		} 
 		
@@ -58,7 +58,7 @@ namespace ComboSurf.Infrastructure
 			var client = new MongoClient();
 			var database = client.GetDatabase("partywave");
 			var collection = database.GetCollection<BsonDocument>("scrapeResults");
-			FilterDefinition<BsonDocument> query = ("{reports: {$not: {$size: 0}}}.limit(1).sort({$natural:-1})");
+			FilterDefinition<BsonDocument> query = ("{'reports.1': {$exists: true}}.limit(1).sort({$natural:-1})");
 			var document = await collection.Find(query).FirstOrDefaultAsync();
 			return document;
 		}

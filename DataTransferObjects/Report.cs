@@ -15,6 +15,7 @@ namespace DataTransferObjects
 		public string windDirection { get; set; }
 		public string windSpeed { get; set; }
 		public string content { get; set; }
+		public DateTime date { get; set; }
 	}
 }
 
