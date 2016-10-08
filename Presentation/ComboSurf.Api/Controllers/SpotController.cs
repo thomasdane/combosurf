@@ -34,7 +34,7 @@ namespace ComboSurf.Api.Controllers
 			return Ok(spots);
 		}
 
-		[Route("{name:alpha}")]
+		[Route("{name}")]
 		[HttpGet]
 		public IHttpActionResult GetByName(string name)
 		{

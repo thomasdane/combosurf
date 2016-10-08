@@ -8,7 +8,8 @@ namespace DataTransferObjects
 {
 	public class Report
 	{
-		public string Name { get; set; }
+		public string name { get; set; }
+		public string url { get; set; }
 		public string swellHeight { get; set; }
 		public string swellDirection { get; set; }
 		public string period { get; set; }
