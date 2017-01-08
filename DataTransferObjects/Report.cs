@@ -15,6 +15,9 @@ namespace DataTransferObjects
 		public string period { get; set; }
 		public string windDirection { get; set; }
 		public string windSpeed { get; set; }
+		public string sunrise { get; set; }
+		public string sunset { get; set; }
+		public string tide { get; set; }
 		public string content { get; set; }
 		public DateTime date { get; set; }
 	}
