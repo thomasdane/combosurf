@@ -23,7 +23,7 @@ namespace ComboSurf.Infrastructure
 			//hard code this for now because we are only doing 3 spots
 			//later we will extend to actually query database here
 			var spots = new List<string> 
-			{"Eastern Beaches", "Northern Beaches", "South Coast"};
+			{"Sydney North", "Sydney East", "Sydney South"};
 			return spots;
 		} 
 		
