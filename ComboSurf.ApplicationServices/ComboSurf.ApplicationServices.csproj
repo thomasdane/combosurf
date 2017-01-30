@@ -52,7 +52,7 @@
       <Name>ComboSurf.Infrastructure</Name>
     </ProjectReference>
     <ProjectReference Include="..\DataTransferObjects\DataTransferObjects.csproj">
-      <Project>{FD517765-E8E8-4256-9250-548672E96DA0}</Project>
+      <Project>{fd517765-e8e8-4256-9250-548672e96da0}</Project>
       <Name>DataTransferObjects</Name>
     </ProjectReference>
   </ItemGroup>

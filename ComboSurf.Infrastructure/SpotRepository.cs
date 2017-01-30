@@ -1,23 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Net;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
 using ComboSurf.Domain.Repositories;
-using DataTransferObjects;
 using MongoDB.Bson;
-using MongoDB.Bson.IO;
 using MongoDB.Bson.Serialization;
 using MongoDB.Driver;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
+using DataTransferObjects;
 
 namespace ComboSurf.Infrastructure
 {
 	public class SpotRepository : ISpotRepository
 	{
-	
-
 		public List<string> GetAll()
 		{
 			//hard code this for now because we are only doing 3 spots

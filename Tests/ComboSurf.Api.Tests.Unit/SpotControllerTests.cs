@@ -1,17 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web.Http.Results;
+﻿using System.Web.Http.Results;
 using ComboSurf.Api.Controllers;
 using ComboSurf.Domain.Services;
-using DataTransferObjects;
-using Newtonsoft.Json;
 using NSubstitute;
-using NSubstitute.Core.Arguments;
 using Xunit;
+using DataTransferObjects;
 
 namespace ComboSurf.Api.Tests.Unit
 {

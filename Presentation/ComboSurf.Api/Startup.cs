@@ -2,7 +2,6 @@
 using System.Linq;
 using System.Net.Http.Formatting;
 using System.Reflection;
-using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Cors;
 using Autofac;
@@ -18,8 +17,8 @@ using Owin;
 [assembly: OwinStartup(typeof(ComboSurf.Api.Startup))]
 namespace ComboSurf.Api
 {
-	
-    public class Startup
+
+	public class Startup
     {	
         public void Configuration(IAppBuilder app)
         {

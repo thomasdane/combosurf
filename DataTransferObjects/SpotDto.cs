@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace DataTransferObjects
 {
 	public class SpotDto
 	{
-		public Object _id { get; set; }
-		public String name { get; set; }
+		public object _id { get; set; }
+		public string name { get; set; }
 		public List<Report> reports { get; set; }
 	}
 }

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Text;
-using System.Collections.Generic;
-using System.Security.Policy;
-using ComboSurf.Domain.Repositories;
-using ComboSurf.Domain.Services;
-using Xunit;
+﻿using Xunit;
 
 namespace ComboSurf.ApplicationServices.Test.Unit
 {
