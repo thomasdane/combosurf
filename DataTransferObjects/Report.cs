@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DataTransferObjects
 {
@@ -19,7 +16,8 @@ namespace DataTransferObjects
 		public string sunset { get; set; }
 		public string tide { get; set; }
 		public string content { get; set; }
-		public DateTime date { get; set; }
+        public List<Reviews> reviews { get; set; }
+        public DateTime date { get; set; }
 	}
 }
 

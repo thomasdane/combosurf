@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -39,6 +40,7 @@ namespace ComboSurf.Infrastructure
 				var oldSpot = Mapper.Map<SpotDto>(json);
 				return oldSpot;
 			}
+		    //spot.reports.Select(r => r.reviews.Select(x => x.negative = 1));
 			return spot;	
 		}
 
