@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net;
 using System.Web.Http;
 using ComboSurf.Domain.Services;
@@ -34,10 +35,25 @@ namespace ComboSurf.Api.Controllers
 				var spot = _spotService.GetByName(name);
 				return Ok(spot);
 			}
-			catch (Exception e)
+			catch (Exception)
 			{
 				return Content(HttpStatusCode.NotFound, "This spot does not yet exist");
 			}
 		}
-	}
+
+        [Route("{name}")]
+        [HttpPost]
+        public IHttpActionResult AddReview([FromBody] Dictionary<string,int> review)
+        {
+            try
+            {
+                _spotService.AddReview(review);
+                return Ok();
+            }
+            catch (Exception)
+            {
+                return Content(HttpStatusCode.NotFound, "This spot does not yet exist");
+            }
+        }
+    }
 }

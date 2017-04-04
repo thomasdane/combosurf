@@ -40,8 +40,16 @@ namespace ComboSurf.Infrastructure
 				var oldSpot = Mapper.Map<SpotDto>(json);
 				return oldSpot;
 			}
-		    //spot.reports.Select(r => r.reviews.Select(x => x.negative = 1));
-			return spot;	
+		    var review = new Reviews
+		    {
+		        postive = 1,
+		        negative = 1
+		    };
+		    var reviews = new List<Reviews> {review};
+
+		    spot.reports[0].reviews = reviews;
+		    spot.reports[1].reviews = reviews;
+            return spot;	
 		}
 
 		public async Task<BsonDocument> QueryDatabaseByName(string name)
