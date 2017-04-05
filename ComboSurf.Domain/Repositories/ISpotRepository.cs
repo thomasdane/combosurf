@@ -11,5 +11,6 @@ namespace ComboSurf.Domain.Repositories
 	{
 		SpotDto GetByName(string name);
 		List<string> GetAll();
+	    bool AddReview(string name, string review);
 	}
 }

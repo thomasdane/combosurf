@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
@@ -26,8 +27,16 @@ namespace ComboSurf.Infrastructure
 			var spots = new List<string> 
 			{"Sydney North", "Sydney East", "Sydney South"};
 			return spots;
-		} 
-		
+		}
+
+	    public SpotDto GetOldSpot()
+	    {
+            var oldResults = Task.Run(() => GetLatestReport()).Result;
+            var json = BsonSerializer.Deserialize<SpotDto>(oldResults);
+            var oldSpot = Mapper.Map<SpotDto>(json);
+            return oldSpot;
+        }
+
 		public SpotDto GetByName(string name)
 		{
 			var document = Task.Run(() => QueryDatabaseByName(name)).Result;
@@ -35,24 +44,58 @@ namespace ComboSurf.Infrastructure
 			var spot = Mapper.Map<SpotDto>(jsonDocument);
 			if (spot.reports.Count < 1)
 			{
-				var oldResults = Task.Run(() => GetLatestReport()).Result;
-				var json = BsonSerializer.Deserialize<SpotDto>(oldResults);
-				var oldSpot = Mapper.Map<SpotDto>(json);
-				return oldSpot;
+			    GetOldSpot();
 			}
-		    var review = new Reviews
-		    {
-		        postive = 1,
-		        negative = 1
-		    };
-		    var reviews = new List<Reviews> {review};
 
-		    spot.reports[0].reviews = reviews;
-		    spot.reports[1].reviews = reviews;
+            var review = new Reviews
+            {
+                positive = 1,
+                negative = 1
+            };
+
+            spot.reports[0].reviews = review;
+            spot.reports[1].reviews = review;
             return spot;	
 		}
 
-		public async Task<BsonDocument> QueryDatabaseByName(string name)
+	    
+
+	    public bool AddReview(string name, string review)
+	    {
+            var spot = GetByName(name);
+
+            var reviewParts = review.Split(',');
+	        var report = reviewParts[0];
+	        var rating = reviewParts[1];
+
+            var ratedReport = spot.reports.First(x => x.name == report);
+
+	        if (rating == "Positive")
+	        {
+                ratedReport.reviews.positive += 1;
+	        }
+	        else
+	        {
+                ratedReport.reviews.negative += 1;
+	        }
+
+	        Task.Run(() => QueryDatabaseById(spot._id, ratedReport.reviews));
+
+            return true;
+	    }
+
+
+        public async Task QueryDatabaseById(object spotId, Reviews reviews)
+        {
+            var client = new MongoClient();
+            var database = client.GetDatabase("partywave");
+            var collection = database.GetCollection<BsonDocument>("scrapeResults");
+            var query = Builders<BsonDocument>.Filter.Eq("_id", spotId);
+            var update = Builders<BsonDocument>.Update.Set("reviews", reviews);
+            await collection.UpdateOneAsync(query, update);
+        }
+
+        public async Task<BsonDocument> QueryDatabaseByName(string name)
 		{
 			var client = new MongoClient();
 			var database = client.GetDatabase("partywave");

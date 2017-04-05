@@ -16,7 +16,7 @@ namespace DataTransferObjects
 		public string sunset { get; set; }
 		public string tide { get; set; }
 		public string content { get; set; }
-        public List<Reviews> reviews { get; set; }
+        public Reviews reviews { get; set; }
         public DateTime date { get; set; }
 	}
 }

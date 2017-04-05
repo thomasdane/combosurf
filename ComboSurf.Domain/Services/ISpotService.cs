@@ -11,5 +11,6 @@ namespace ComboSurf.Domain.Services
 	{
         IEnumerable<string> GetAll();
         SpotDto GetByName(string name);
+	    bool AddReview(string name, string review);
 	}
 }

@@ -19,6 +19,11 @@ namespace ComboSurf.ApplicationServices
             return _spotRepository.GetByName(name);
 		}
 
+	    public bool AddReview(string name, string review)
+	    {
+	        return _spotRepository.AddReview(name, review);
+	    }
+
 		public IEnumerable<string> GetAll()
 		{
 			return _spotRepository.GetAll();

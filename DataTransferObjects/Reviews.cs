@@ -4,7 +4,7 @@ namespace DataTransferObjects
 {
 	public class Reviews
 	{
-		public int postive { get; set; }
+		public int positive { get; set; }
 		public int negative { get; set; }
 	}
 }

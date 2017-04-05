@@ -43,17 +43,10 @@ namespace ComboSurf.Api.Controllers
 
         [Route("{name}")]
         [HttpPost]
-        public IHttpActionResult AddReview([FromBody] Dictionary<string,int> review)
+        public IHttpActionResult AddReview(string name, [FromBody] string review)
         {
-            try
-            {
-                _spotService.AddReview(review);
-                return Ok();
-            }
-            catch (Exception)
-            {
-                return Content(HttpStatusCode.NotFound, "This spot does not yet exist");
-            }
+            _spotService.AddReview(name, review);
+            return Ok();
         }
     }
 }
