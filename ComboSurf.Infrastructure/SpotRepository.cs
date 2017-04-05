@@ -18,8 +18,6 @@ namespace ComboSurf.Infrastructure
 {
 	public class SpotRepository : ISpotRepository
 	{
-	
-
 		public List<string> GetAll()
 		{
 			//hard code this for now because we are only doing 3 spots
@@ -47,23 +45,12 @@ namespace ComboSurf.Infrastructure
 			    GetOldSpot();
 			}
 
-            var review = new Reviews
-            {
-                positive = 1,
-                negative = 1
-            };
-
-            spot.reports[0].reviews = review;
-            spot.reports[1].reviews = review;
             return spot;	
 		}
-
-	    
 
 	    public bool AddReview(string name, string review)
 	    {
             var spot = GetByName(name);
-
             var reviewParts = review.Split(',');
 	        var report = reviewParts[0];
 	        var rating = reviewParts[1];
@@ -79,19 +66,18 @@ namespace ComboSurf.Infrastructure
                 ratedReport.reviews.negative += 1;
 	        }
 
-	        Task.Run(() => QueryDatabaseById(spot._id, ratedReport.reviews));
+	        Task.Run(() => UpdateSpot(spot));
 
             return true;
 	    }
 
-
-        public async Task QueryDatabaseById(object spotId, Reviews reviews)
+        public async Task UpdateSpot(SpotDto spot)
         {
             var client = new MongoClient();
             var database = client.GetDatabase("partywave");
             var collection = database.GetCollection<BsonDocument>("scrapeResults");
-            var query = Builders<BsonDocument>.Filter.Eq("_id", spotId);
-            var update = Builders<BsonDocument>.Update.Set("reviews", reviews);
+            var query = Builders<BsonDocument>.Filter.Eq("_id", spot._id);
+            var update = Builders<BsonDocument>.Update.Set("reports", spot.reports);
             await collection.UpdateOneAsync(query, update);
         }
 
