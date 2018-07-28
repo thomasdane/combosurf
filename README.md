@@ -1,6 +1,3 @@
-# combosurf
-Partywave API
+# Web API in C#
 
-This API reads from a Mongo database and serves surf report information at http://surfapi.cloudapp.net/spots
-
-One example route is: http://surfapi.cloudapp.net/spots/southcoat
+This API reads from a Mongo database and serves JSON
